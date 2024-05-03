@@ -48,8 +48,7 @@ const homeStyle = StyleSheet.create({
       formation:{
         width: '100%',
         height: 150,
-        
-      
+          
     }
   
 })
