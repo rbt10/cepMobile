@@ -1,10 +1,10 @@
 import React from 'react';
-import { View, Text, FlatList, StyleSheet, ImageBackground, TouchableOpacity, ScrollView  } from 'react-native';
+import { View, Text, FlatList, StyleSheet, ImageBackground, TouchableOpacity, ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { FontAwesome } from '@expo/vector-icons'; // Importez l'icône de la bibliothèque FontAwesome
+
 import FormationItem from '../../components/FormationItem';
 import formationData from '../../api/formationData';
-
-
 
 const FormationsScreen = () => {
   const navigation = useNavigation();
@@ -29,13 +29,21 @@ const FormationsScreen = () => {
 
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={require('../../assets/images/formations.png')}
-        style={styles.headerBackground}
-        imageStyle={{ resizeMode: 'cover' }}
-      >
-        {/* Contenu en-tête si nécessaire */}
-      </ImageBackground>
+      {/* En-tête avec bouton de retour */}
+      <View style={styles.header}>
+        <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
+          <FontAwesome name="arrow-left" size={24} color="#fff" />
+        </TouchableOpacity>
+        <ImageBackground
+          source={require('../../assets/images/formations.png')}
+          style={styles.headerBackground}
+          imageStyle={{ resizeMode: 'cover' }}
+        >
+          {/* Contenu en-tête si nécessaire */}
+        </ImageBackground>
+      </View>
+
+      {/* Liste des formations */}
       <ScrollView>
         <FlatList
           data={formationData}
@@ -54,19 +62,20 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f0f0f0',
   },
+  header: {
+    backgroundColor: '#007bff', // Couleur d'arrière-plan de l'en-tête
+  },
+  backButton: {
+    position: 'absolute',
+    top: 20,
+    left: 20,
+    padding: 10,
+  },
   headerBackground: {
     width: '100%',
     height: 200,
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  headerText: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    color: '#fff',
-    textShadowColor: 'rgba(0, 0, 0, 0.75)',
-    textShadowOffset: { width: 2, height: 2 },
-    textShadowRadius: 5,
   },
   formationsList: {
     paddingHorizontal: 16,
@@ -95,7 +104,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 16,
     borderRadius: 10,
-    textAlign: 'center',
+   
   },
 });
 

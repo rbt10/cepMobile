@@ -35,10 +35,10 @@ const BottomTabs = () => {
         tabBarLabelStyle: { fontSize: 14 }, // Style des libellés des onglets
       })}
     >
-      <Tab.Screen name="Accueil" component={HomeScreen} />
+      <Tab.Screen name="Accueil" component={HomeScreen}   options={{ headerShown: false }}/>
       <Tab.Screen name="Eglises" component={EgliseScreen} />
       <Tab.Screen name="Enseignement" component={Enseignements} />
-      <Tab.Screen name="Formations" component={FormationsScreen} />
+      <Tab.Screen name="Formations" component={FormationsScreen}  />
     </Tab.Navigator>
   );
 };

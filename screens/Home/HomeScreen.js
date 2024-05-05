@@ -11,10 +11,10 @@ import Image5 from '../../assets/images/ven.jpeg';
 import Image6 from '../../assets/images/dim.jpeg';
 import Image7 from '../../assets/images/formations.png';
 import Image8 from '../../assets/images/dons.png';
-import Image9 from '../../assets/images/pilier.png';
 import dept from '../../assets/images/dept.png';
 import shop from '../../assets/images/boutique.png';
 import vision from '../../assets/images/vision.png';
+import logo from '../../assets/images/logo.png'; // Importez votre logo ici
 
 const HomeScreen = () => {
   const navigation = useNavigation();
@@ -24,21 +24,30 @@ const HomeScreen = () => {
   };
 
   const handleDptPress = () => {
-    navigation.navigate('ChurchDepartments'); // Naviguer vers l'écran des départements
+    navigation.navigate('Departements'); // Naviguer vers l'écran des départements
   };
 
-  const handleImagePress = () => {
-    const donationUrl = 'https://cep-resurrection.org/faire-un-don/';
-    Linking.openURL(donationUrl); // Ouvrir l'URL dans le navigateur externe
+  const handleVisionPress = () => {
+    navigation.navigate('Vision'); // Naviguer vers l'écran de la vision
   };
+
+  const handleDonPress = () => {
+    navigation.navigate('Dons'); // Naviguer vers l'écran des dons
+  };
+
   const handleShopPress = () => {
     const shopUrl = 'https://cep-resurrection.org/boutique/';
     Linking.openURL(shopUrl); // Ouvrir l'URL dans le navigateur externe
   };
 
   return (
-    <ScrollView>
+
+    <View  style={homeStyle.container}>
+       <Image source={logo} style={homeStyle.logo} />
+       <ScrollView>
+      {/* En-tête avec le logo */}
       <View style={homeStyle.header}>
+       
         <Swiper style={homeStyle.sliderContainer} autoplay={true} autoplayTimeout={3}>
           <View>
             <Image source={Image1} style={homeStyle.homeImg} />
@@ -51,6 +60,8 @@ const HomeScreen = () => {
           </View>
         </Swiper>
       </View>
+
+      {/* Contenu restant de la page */}
       <Text style={homeStyle.prog}>Nos Programmes</Text>
       <View style={homeStyle.imageContainer}>
         <Image source={Image4} style={homeStyle.horaireImg} />
@@ -60,13 +71,12 @@ const HomeScreen = () => {
       <TouchableOpacity onPress={handleFormationPress}>
         <Image source={Image7} style={homeStyle.formation} />
       </TouchableOpacity>
-      <TouchableOpacity onPress={handleImagePress}>
+      <TouchableOpacity onPress={handleDonPress}>
         <Image source={Image8} style={homeStyle.formation} />
       </TouchableOpacity>
-      <TouchableOpacity onPress={handleShopPress}>
+      <TouchableOpacity onPress={handleVisionPress}>
         <Image source={vision} style={homeStyle.formation} />
       </TouchableOpacity>
-      <Image source={Image9} style={homeStyle.formation} />
       <TouchableOpacity onPress={handleDptPress}>
         <Image source={dept} style={homeStyle.formation} />
       </TouchableOpacity>
@@ -74,6 +84,8 @@ const HomeScreen = () => {
         <Image source={shop} style={homeStyle.formation} />
       </TouchableOpacity>
     </ScrollView>
+    </View>
+    
   );
 };
 
